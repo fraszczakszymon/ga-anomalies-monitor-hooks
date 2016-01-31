@@ -17,7 +17,7 @@ var api = require('api/api'),
 program
 	.command('build')
 	.description('Run build and dispatch related events')
-	.action(() => {
+	.action(function () {
 		api.build();
 	});
 
