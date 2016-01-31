@@ -7,7 +7,22 @@
  * LICENSE.md file in the root directory of this source tree.
  */
 
+/*global module*/
+function onSuccessBuild(build) {
+	console.log('Success:', build.id);
+}
+
+function dispatch(event, data) {
+	console.log('slack.dispatch', event);
+
+	switch (event) {
+		case 'build.success':
+			return onSuccessBuild(data);
+		default:
+			console.log('Not supported event');
+	}
+}
 
 module.exports = {
-	test :2
-}
+	dispatch: dispatch
+};

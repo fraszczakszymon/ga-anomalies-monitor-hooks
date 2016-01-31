@@ -1,0 +1,11 @@
+{
+  "server": {
+    "url": "http://localhost:8080"
+  },
+  "hooks": {
+    "slack": {
+      "channel": "test-anomalies",
+      "token": "123456"
+    }
+  }
+}
