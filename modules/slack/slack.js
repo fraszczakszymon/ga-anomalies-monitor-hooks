@@ -27,8 +27,11 @@ function sendMessage(text, attachments) {
 	fetch(url, {
 		method: 'POST',
 		body: form
-	}).then((res) => {return res.text()})
-		.then((body) => {console.log(body)});
+	}).then(function (res) {
+		return res.text();
+	}).then(function (body) {
+		console.log(body);
+	});
 }
 
 module.exports = {

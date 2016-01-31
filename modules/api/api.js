@@ -15,13 +15,13 @@ var config = require('config'),
 
 function getBuild(id) {
 	return fetch(config.server.url + '/build/' + id)
-		.then((res) => {
+		.then(function (res) {
 			return res.text();
 		})
-		.then((build) => {
+		.then(function (build) {
 			return JSON.parse(build);
 		})
-		.catch(() => {
+		.catch(function () {
 			return null;
 		});
 }
@@ -30,7 +30,7 @@ function getFinishedBuild(build) {
 	var deferred = q.defer();
 
 	function recursiveGet() {
-		setTimeout(() => {
+		setTimeout(function () {
 			getBuild(build.id)
 				.then(function (build) {
 					if (build.status === 1) {
@@ -48,17 +48,17 @@ function getFinishedBuild(build) {
 }
 
 function build() {
-	return fetch(config.server.url + '/build', { method: 'POST' })
-		.then((res) => {
+	return fetch(config.server.url + '/build', {method: 'POST'})
+		.then(function (res) {
 			return res.text();
 		})
-		.then((build) => {
+		.then(function (build) {
 			return JSON.parse(build);
 		})
-		.then((build) => {
+		.then(function (build) {
 			return getFinishedBuild(build);
 		})
-		.then((finishedBuild) => {
+		.then(function (finishedBuild) {
 			var event = finishedBuild.status === 0 ? 'build.success' : 'build.failure';
 			eventDispatcher.dispatch(event, finishedBuild);
 		});

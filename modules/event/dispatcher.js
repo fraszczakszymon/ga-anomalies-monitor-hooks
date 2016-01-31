@@ -13,7 +13,7 @@ var hooks = [
 ];
 
 function dispatch(event, data) {
-	hooks.forEach((hook) => {
+	hooks.forEach(function (hook) {
 		hook.dispatch(event, data);
 	});
 }

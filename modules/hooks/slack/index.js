@@ -42,7 +42,7 @@ function sendQueryMessage(build, query, data) {
 
 function onSuccessBuild(build) {
 	console.log('Success:', build.id);
-	build.queries.forEach((query) => {
+	build.queries.forEach(function (query) {
 		var data = query.data[query.data.length - 1];
 		if (data.exceeded) {
 			sendQueryMessage(build, query, data);
