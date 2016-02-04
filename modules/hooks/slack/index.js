@@ -13,7 +13,7 @@ var config = require('config'),
 	slack = require('slack/slack');
 
 function sendQueryMessage(build, query, data) {
-	var date = moment(data.date).format('MMMM DD, HH:mm'),
+	var date = moment(data.date).tz(config.hooks.slack.timezone).format('MMMM DD, HH:mm'),
 		url = config.client.url + '/build/' + build.id + '/query/' + query.id,
 		title = 'Detected ' + (data.change > 0 ? 'growth' : 'drop')+ ' in *' + query.title + '*',
 		text = '<' + url +'|Build #' + build.id + ': ' + '*' + query.title + '*>, ' + date;
@@ -43,7 +43,7 @@ function sendQueryMessage(build, query, data) {
 function onSuccessBuild(build) {
 	console.log('Success:', build.id);
 	build.queries.forEach(function (query) {
-		var data = query.data[query.data.length - 1];
+		var data = query.data[query.data.length - 2];
 		if (data.exceeded) {
 			sendQueryMessage(build, query, data);
 		}

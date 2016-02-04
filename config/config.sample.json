@@ -9,6 +9,7 @@
     "slack": {
       "channel": "#anomalies-test",
       "icon_emoji": ":see_no_evil:",
+      "timezone": "Europe/Warsaw",
       "token": "AAAAAAAAA/BBBBBBBBB/CCCCCCCCCCCCCCCCCCCCCCCC",
       "username": "GA Monitor"
     }
